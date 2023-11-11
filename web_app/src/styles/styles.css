@@ -1,0 +1,22 @@
+.form-label, .form-name{
+    color: black;
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-dialog {
+    width: 90%; 
+}
+
+.message {
+    color: black;
+    font-size: larger;
+}
+
+.btn {
+    margin: 10px;
+}

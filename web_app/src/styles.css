@@ -1,0 +1,22 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Collegiate+One&family=Ubuntu&display=swap');
+
+*{
+  font-family: 'Alumni Sans Collegiate One', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: large;
+}
+
+
+
+.navbar-nav .nav-link {
+  color: white;
+  font-weight: bolder;
+  margin-right: 30px; 
+}
+
+
+.navbar-nav.ml-auto {
+  display: flex;
+  align-items: center;
+}
