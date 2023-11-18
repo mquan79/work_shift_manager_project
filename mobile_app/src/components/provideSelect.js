@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDataProvinceFail, fetchDataProvinceSuccess } from '../store/Slice/provinceSlice';
-import styles from '../../styles';
 
 const ProvideSelect = ({ onProvinceChange }) => {
   const [selectedProvince, setSelectedProvince] = useState('');
@@ -37,7 +36,7 @@ const ProvideSelect = ({ onProvinceChange }) => {
 
   return (
     <View style={styles.pickerContainer}>
-      <TouchableOpacity style={styles.textPicker}onPress={handlePickerClose}><Text>Xong</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.textPicker} onPress={handlePickerClose}><Text>Xong</Text></TouchableOpacity>
       <Picker
         style={styles.picker}
         selectedValue={selectedProvince}
@@ -51,5 +50,28 @@ const ProvideSelect = ({ onProvinceChange }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  pickerContainer: {
+    width: '100%',
+    height: '30%',
+    position: 'absolute',
+    bottom: 0,
+    backgroundColor: 'white',
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 20,
+  },
+
+  picker: {
+    flex: 1,
+  },
+
+  textPicker: {
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    margin: 20,
+  }
+});
 
 export default ProvideSelect;

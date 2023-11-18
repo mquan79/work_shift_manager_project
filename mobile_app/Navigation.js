@@ -45,7 +45,6 @@ const Navigation = () => {
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
               let iconName;
-
               if (route.name === 'Tìm việc') {
                 iconName = focused ? 'search' : 'search';
               } else if (route.name === 'Lịch làm') {

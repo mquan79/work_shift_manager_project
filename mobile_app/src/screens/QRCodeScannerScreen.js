@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet, Button } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import styles from '../../styles';
 import { useSelector } from 'react-redux';
 import * as api from '../api/apiCustomer';
 import { BarCodeScanner } from 'expo-barcode-scanner';
@@ -84,6 +83,14 @@ const QRCodeScannerScreen = ({ navigation }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default QRCodeScannerScreen;
 

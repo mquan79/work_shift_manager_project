@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = 'http://192.168.1.111/api';
+const apiUrl = 'http://192.168.1.10/api';
 
 export const get = async (url) => {
   try {

@@ -3,6 +3,7 @@ import { fetchDataWorkshiftFail, fetchDataWorkshiftSuccess } from './src/store/S
 import {fetchDataWorkerFail, fetchDataWorkerSuccess} from './src/store/Slice/workerSlice'
 import {fetchDataHistoryFail, fetchDataHistorySuccess} from './src/store/Slice/historyPickerSlice'
 import {fetchDataQrcodeFail, fetchDataQrcodeSuccess} from './src/store/Slice/qrcodesSlice'
+import {fetchDataRegisterFail, fetchDataRegisterSuccess} from './src/store/Slice/registerSlice'
 import { useDispatch } from 'react-redux'
 import * as Api from './src/api/apiCustomer'
 const FetchData = () => {
@@ -17,21 +18,24 @@ const FetchData = () => {
             dispatch(fetchDataHistorySuccess(dataHistory));
             const dataQRCode = await Api.get('qrcodes');
             dispatch(fetchDataQrcodeSuccess(dataQRCode));
+            const dataRegister = await Api.get('registers');
+            dispatch(fetchDataRegisterSuccess(dataRegister));
         } catch (error) {
             dispatch(fetchDataWorkshiftFail(error.message));
             dispatch(fetchDataWorkerFail(error.message));
             dispatch(fetchDataHistoryFail(error.message));
             dispatch(fetchDataQrcodeFail(error.message));
+            dispatch(fetchDataRegisterFail(error.message))
         }
     }
     useEffect(() => {
-        // const intervalId = setInterval(() => {
+        const intervalId = setInterval(() => {
             fetchData(); 
-        // }, 1000); 
+        }, 1000); 
 
-        // return () => {
-        //     clearInterval(intervalId);
-        // };
+        return () => {
+            clearInterval(intervalId);
+        };
     }, []);
 }
 

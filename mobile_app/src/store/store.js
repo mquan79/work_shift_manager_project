@@ -7,6 +7,7 @@ import districtsReducer from './Slice/districtsSlice'
 import wardReducer from './Slice/wardSlice'
 import historyReducer from './Slice/historyPickerSlice'
 import qrcodeReducer from './Slice/qrcodesSlice'
+import registerReducer from './Slice/registerSlice'
 const store = configureStore({
   reducer: {
     auth: authReducer,
@@ -17,6 +18,7 @@ const store = configureStore({
     ward: wardReducer,
     history: historyReducer,
     qrcode: qrcodeReducer,
+    register: registerReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

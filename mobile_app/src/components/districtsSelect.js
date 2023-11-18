@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDataDistrictsFail, fetchDataDistrictsSuccess } from '../store/Slice/districtsSlice';
-import styles from '../../styles';
 
 const DistrictSelect = ({ onDistrictChange, idPro }) => {
   const [selectedDistricts, setSelectedDistricts] = useState('');
@@ -56,5 +55,28 @@ const DistrictSelect = ({ onDistrictChange, idPro }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  pickerContainer: {
+    width: '100%',
+    height: '30%',
+    position: 'absolute',
+    bottom: 0,
+    backgroundColor: 'white',
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 20,
+  },
+
+  picker: {
+    flex: 1,
+  },
+
+  textPicker: {
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    margin: 20,
+  }
+});
 
 export default DistrictSelect;

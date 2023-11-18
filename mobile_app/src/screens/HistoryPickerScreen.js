@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
-import styles from '../../styles';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import Workshift from '../components/workshift'; 
 
@@ -25,5 +24,26 @@ const HistoryPickerScreen = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  workshift_box: {
+    marginVertical: 12,
+    padding: 25,
+    borderWidth: 1,
+    borderColor: 'grey',
+    borderRadius: 10,
+  },
+
+  workshift_container: {
+    marginTop: 60,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  textWorkshift: {
+    fontWeight: 'bold',
+  },
+});
 
 export default HistoryPickerScreen;

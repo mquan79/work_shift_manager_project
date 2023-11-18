@@ -58,6 +58,6 @@ app.get('/api/messages', messageController.getMessage);
 app.post('/api/messages', messageController.sendMessage);
 
 
-app.listen(port, '192.168.1.111', () => {
-  console.log(`Server is running on http://192.168.1.111:${port}`);
+app.listen(port, '192.168.1.10', () => {
+  console.log(`Server is running on http://192.168.1.10:${port}`);
 });

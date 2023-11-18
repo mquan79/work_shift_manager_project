@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, TextInput, TouchableOpacity, FlatList, Text, KeyboardAvoidingView } from 'react-native';
+import React, { useEffect, useState, useRef } from 'react';
+import { View, TextInput, TouchableOpacity, FlatList, Text, KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useSelector } from 'react-redux';
 import * as api from '../api/apiCustomer';
@@ -9,6 +9,7 @@ const MessageScreen = () => {
   const [messages, setMessages] = useState([]);
   const users = useSelector((state) => state.worker.worker);
   const userCurrent = useSelector((state) => state.auth.user);
+  const flatListRef = useRef(null);
 
   const fetchData = async () => {
     try {
@@ -40,6 +41,9 @@ const MessageScreen = () => {
   };
 
   const handleSendMessage = async () => {
+    if (message === '') {
+      return;
+    }
     try {
       const dataMessage = {
         id_worker: userCurrent._id,
@@ -52,25 +56,35 @@ const MessageScreen = () => {
     }
   };
 
+  const scrollToBottom = () => {
+    if (flatListRef.current) {
+      flatListRef.current.scrollToEnd({ animated: true });
+    }
+  };
+
   return (
     <KeyboardAvoidingView
-      style={styles.container}
+      style={styles.MessageScreenContainer}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -100}
     >
       <FlatList
+        ref={flatListRef}
         data={messages}
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => (
           <View style={[
             styles.messageContainer,
             { alignSelf: item.id_worker === userCurrent._id ? 'flex-end' : 'flex-start' },
-            { backgroundColor: item.id_worker === userCurrent._id ? 'grey' : 'white' }
+            { backgroundColor: item.id_worker === userCurrent._id ? 'grey' : '#fbb700' }
           ]}>
             <Text style={styles.messageUser}>{getNameById(item.id_worker)}</Text>
             <Text style={styles.messageText}>{item.message}</Text>
           </View>
         )}
+        onContentSizeChange={() => {
+          scrollToBottom();
+        }}
       />
 
       <View style={styles.inputContainer}>
@@ -81,25 +95,18 @@ const MessageScreen = () => {
           value={message}
         />
         <TouchableOpacity style={styles.buttonSend} onPress={handleSendMessage}>
-          <Icon name="paper-plane" size={30} color={'grey'}/>
+          <Icon name="paper-plane" size={30} color={'#001489'} />
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
   );
 };
-
+//#001489
+//#fbb700
 const styles = StyleSheet.create({
-  container: {
+  MessageScreenContainer: {
     marginTop: 50,
     flex: 1,
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderTopWidth: 1,
-    borderTopColor: '#ccc',
   },
   textField: {
     flex: 1,
@@ -118,7 +125,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderWidth: 1,
     borderColor: '#ccc',
-    borderRadius: 20
+    borderRadius: 20,
   },
   messageText: {
     fontSize: 16,
@@ -127,6 +134,17 @@ const styles = StyleSheet.create({
   messageUser: {
     fontSize: 14,
     fontWeight: 'bold',
+  },
+
+  inputContainer: {
+    marginVertical: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5
   },
 });
 

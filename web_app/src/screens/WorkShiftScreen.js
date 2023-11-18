@@ -74,10 +74,21 @@ function WorkShiftScreen() {
   const handleConfirmDelete = async() => {
     setIsCorrect(true);
     setIsDeleteModalOpen(false);
+    const wsDelete = workshifts.find((item) => item._id.toString() === idDelete);
+    if(wsDelete.currentNumberWorker > 0) {
+      setIdDelete('');
+      setModalOpen(true);
+      setIsCorrect(false);
+      setMessage('Đã có người đăng ký ca làm, Bạn không thể xóa ca làm này')
+      return;
+    }
     try {
-      console.log('Xóa ca làm thành công');
       await Api.deleted(idDelete, 'workshifts');
       fetchData();
+      setModalOpen(true);
+      setIsCorrect(true);
+      setMessage('Xóa ca làm thành công')
+      setIdDelete('');
     } catch (error) {
       console.log('Error : ', error);
     }
