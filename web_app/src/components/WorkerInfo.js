@@ -46,16 +46,16 @@ function WorkerInfo({ idWorker }) {
 
   return (
     <div className="container mt-4">
-      <h2 className="form-name">Thông Tin Người Dùng</h2>
+      <h2 className="form-name">Thông tin người dùng</h2>
       <ul className="list-group">
         <li className="list-group-item">Tên: {worker.name}</li>
-        <li className="list-group-item">Ngày Sinh: {worker.birthday}</li>
-        <li className="list-group-item">Số Điện Thoại: {worker.phone}</li>
-        <li className="list-group-item">Chứng Minh Nhân Dân: {worker.id_card}</li>
-        <li className="list-group-item">Địa Chỉ: {worker.address}</li>
-        <li className="list-group-item">Số Lần đăng ký: {pickerWorker.length}</li>
-        <li className="list-group-item">Số Lần Thành Công: {historyOut}</li>
-        <li className="list-group-item">Số Lần Không đi làm: {miss}</li>
+        <li className="list-group-item">Ngày sinh: {worker.birthday}</li>
+        <li className="list-group-item">Số điện thoại: {worker.phone}</li>
+        <li className="list-group-item">Chứng minh nhân dân: {worker.id_card}</li>
+        <li className="list-group-item">Địa chỉ: {worker.address}</li>
+        <li className="list-group-item">Số lần đăng ký: {pickerWorker.length}</li>
+        <li className="list-group-item">Số lần thành công: {historyOut}</li>
+        <li className="list-group-item">Số lần không đi làm: {miss}</li>
       </ul>
     </div>
   );

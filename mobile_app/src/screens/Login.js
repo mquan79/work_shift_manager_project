@@ -12,11 +12,16 @@ const Login = ({ navigation }) => {
   const workers = useSelector((state) => state.worker.worker);
 
   const handleLogin = () => {
+    if(username === '' || password === '') {
+      Alert.alert('Thông báo', 'Vui lòng nhập đầy đủ thông tin');
+      return;
+    }
     const workerFind = workers.find((wk) => wk.password === password && wk.phone === username);
     if (workerFind) {
       try {
         dispatch(loginRequest());
         dispatch(loginSuccess(workerFind));
+        Alert.alert('Thông báo', 'Đăng nhập thành công');
       } catch (error) {
         dispatch(loginFailure(error.message));
         console.log(error);

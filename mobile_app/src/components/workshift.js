@@ -7,7 +7,7 @@ const Workshift = ({ id, historyIn, historyOut }) => {
   const workshifts = useSelector((state) => state.workshift.workshift);
   const workshift = workshifts.find((item) => item._id === id);
   const lastDay = time.getLastDay();
-  const isMiss = (new Date(lastDay) >= new Date(workshift.date) && historyIn == '' && historyOut == '');
+  const isMiss = (new Date(lastDay) >= new Date(workshift.date) && (historyIn == '' || historyOut == ''));
   const isNoMiss = (historyIn != '' && historyOut != '')
   const dateIn = new Date(historyIn);
   const hours = dateIn.getHours();
@@ -19,10 +19,13 @@ const Workshift = ({ id, historyIn, historyOut }) => {
       <Text style={styles.text}>{workshift.work}, {workshift.date}, {workshift.time}</Text>
       <View style={styles.money}>
         <Icon name="money" style={styles.iconMoney} />
-        <Text style={styles.textMoney} >{workshift.salary}</Text>
+        <Text style={styles.textMoney} >{parseInt(workshift.salary).toLocaleString('vi-VN', {
+          style: 'currency',
+          currency: 'VND',
+        })}/h</Text>
       </View>
       <View style={styles.time}>
-      <Icon name="clock-o" style={styles.timeIcon} />
+        <Icon name="clock-o" style={styles.timeIcon} />
         {historyIn ? (<Text style={styles.status}>{time.formatDateString(historyIn)} -</Text>) : (<Text style={styles.status}>Chưa quét ca -</Text>)}
         {historyOut ? (<Text style={styles.status}> {time.formatDateString(historyOut)}</Text>) : (<Text style={styles.status}> Chưa quét ca</Text>)}
       </View>
@@ -61,7 +64,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginRight: 10,
     color: '#fbb700'
-  },  
+  },
 
   timeIcon: {
     fontSize: 16,

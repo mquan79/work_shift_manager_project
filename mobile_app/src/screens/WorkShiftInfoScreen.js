@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Button, StyleSheet, TouchableOpacity, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import * as api from '../api/apiCustomer'
@@ -26,7 +26,7 @@ const WorkShiftInfoScreen = ({ route, navigation }) => {
         const confirmed = await Confirm('Bạn có chắc chắn đăng ký ca này không?');
         if (confirmed) {
             if (history) {
-                alert('Bạn đã đăng ký ca này rồi')
+                Alert.alert('Thông báo', 'Bạn đã đăng ký ca này rồi')
             } else {
                 pickerWorkshift();
             }
@@ -35,6 +35,10 @@ const WorkShiftInfoScreen = ({ route, navigation }) => {
     }
 
     const pickerWorkshift = async () => {
+        if (workshift.currentNumberWorker === workshift.maxNumberWorker) {
+            Alert.alert('Thông báo', 'Ca làm này đã đầy')
+            return;
+        }
         try {
             await api.add(picker, 'historypickers');
             await api.updated(id, { 'currentNumberWorker': workshift.currentNumberWorker + 1, }, 'workshifts');
@@ -55,10 +59,13 @@ const WorkShiftInfoScreen = ({ route, navigation }) => {
             </View>
             <View style={styles.InfoBox}>
                 <Text style={styles.title}>Tiền lương</Text>
-            <View style={styles.money}>
-            <Icon name="money" style={styles.iconMoney}/>
-                <Text style={styles.text}>{workshift.salary}</Text>
-            </View>
+                <View style={styles.money}>
+                    <Icon name="money" style={styles.iconMoney} />
+                    <Text style={styles.text}>{parseInt(workshift.salary).toLocaleString('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND',
+                    })}/h</Text>
+                </View>
             </View>
             <View style={styles.InfoBox}>
                 <Text style={styles.title}>Mô tả</Text>
@@ -76,8 +83,8 @@ const WorkShiftInfoScreen = ({ route, navigation }) => {
                 <Text style={styles.text}>   - Mỗi ca sẽ được nghỉ giải lao tùy sắp xếp của quản lý và thời gian nghĩ sẽ ko tính lương.                </Text>
             </View>
             <View style={styles.Register}>
-                    <TouchableOpacity style={styles.buttonWorkshift} onPress={() => confirmPicker()}><Text>Đăng ký</Text></TouchableOpacity>
-                </View>
+                <TouchableOpacity style={styles.buttonWorkshift} onPress={() => confirmPicker()}><Text>Đăng ký</Text></TouchableOpacity>
+            </View>
         </View>
     );
 }
@@ -123,12 +130,12 @@ const styles = StyleSheet.create({
     money: {
         flexDirection: 'row',
         paddingVertical: 10,
-      },
-    
-      iconMoney: {
+    },
+
+    iconMoney: {
         fontSize: 16,
         marginRight: 10,
-      },  
+    },
 });
 
 export default WorkShiftInfoScreen

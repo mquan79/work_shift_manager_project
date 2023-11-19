@@ -42,8 +42,6 @@ const [message, setMessage] = useState('');
           }
         setExcelData(null);
     }
-    
-
   };
 
 const handleFileUpload = (event) => {
@@ -62,8 +60,6 @@ const handleFileUpload = (event) => {
   };
 
   reader.readAsBinaryString(file);
-
-  console.log(excelData)
 };
 
 return (
@@ -72,7 +68,7 @@ return (
     <CustomModal isCorret = {isCorrect} isOpen={isOpenModal} onClose={closeModal} message={message}/>
       <input className="form-control" type="file" accept=".xlsx, .xls" onChange={handleFileUpload} />
     </div>
-    <button className="btn btn-dark" onClick={openModal}>Thêm Người Dùng</button>
+    <button className="btn btn-dark" onClick={openModal}>Thêm người dùng</button>
   </div>
 );
 }

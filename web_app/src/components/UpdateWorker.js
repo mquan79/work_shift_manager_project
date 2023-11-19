@@ -34,7 +34,7 @@ function UpdateWorker({ worker, onUpdate, close }) {
   return (
     <div className="container ">
       <ConfirmModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onConfirm={handleConfirm} message="Bạn có chắc chắn muốn thay đổi thông tin?" />
-      <h2 className="form-name">Cập Nhật Thông Tin Người Dùng</h2>
+      <h2 className="form-name">Cập nhật thông tin người dùng</h2>
       <div className="mb-3">
         <label className="form-label">Tên:</label>
         <input
@@ -46,7 +46,7 @@ function UpdateWorker({ worker, onUpdate, close }) {
         />
       </div>
       <div className="mb-3">
-        <label className="form-label">Sinh Nhật:</label>
+        <label className="form-label">Ngày sinh:</label>
         <input
           className="form-control"
           type="date"
@@ -56,7 +56,7 @@ function UpdateWorker({ worker, onUpdate, close }) {
         />
       </div>
       <div className="mb-3">
-        <label className="form-label">Số Điện Thoại:</label>
+        <label className="form-label">Số điện thoại:</label>
         <input
           className="form-control"
           type="text"
@@ -66,7 +66,7 @@ function UpdateWorker({ worker, onUpdate, close }) {
         />
       </div>
       <div className="mb-3">
-        <label className="form-label">Chứng Minh Nhân Dân:</label>
+        <label className="form-label">Chứng minh nhân dân:</label>
         <input
           className="form-control"
           type="text"
@@ -76,7 +76,7 @@ function UpdateWorker({ worker, onUpdate, close }) {
         />
       </div>
       <div className="mb-3">
-        <label className="form-label">Địa Chỉ:</label>
+        <label className="form-label">Địa chỉ:</label>
         <input
           className="form-control"
           type="text"
@@ -86,7 +86,7 @@ function UpdateWorker({ worker, onUpdate, close }) {
         />
       </div>
       <button className="btn btn-dark" onClick={openConfirm}>
-        Cập Nhật Người Dùng
+        Cập nhập người dùng
       </button>
     </div>
   );

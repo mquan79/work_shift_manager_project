@@ -51,16 +51,16 @@ function WorkerInfo({ phone }) {
     <div className="container mt-4">
       {workers ? (
         <>
-          <h2 className="form-name">Thông Tin Người Dùng</h2>
+          <h2 className="form-name">Thông tin người dùng</h2>
           <ul className="list-group">
             <li className="list-group-item">Tên: {workers.name}</li>
-            <li className="list-group-item">Ngày Sinh: {workers.birthday}</li>
-            <li className="list-group-item">Số Điện Thoại: {workers.phone}</li>
-            <li className="list-group-item">Chứng Minh Nhân Dân: {workers.id_card}</li>
-            <li className="list-group-item">Địa Chỉ: {workers.address}</li>
-            <li className="list-group-item">Số Lần đăng ký: {pickerWorker.length}</li>
-            <li className="list-group-item">Số Lần Thành Công: {historyOut}</li>
-            <li className="list-group-item">Số Lần Không đi làm: {miss}</li>
+            <li className="list-group-item">Ngày sinh: {workers.birthday}</li>
+            <li className="list-group-item">Số điện thoại: {workers.phone}</li>
+            <li className="list-group-item">Chứng minh nhân dân: {workers.id_card}</li>
+            <li className="list-group-item">Địa chỉ: {workers.address}</li>
+            <li className="list-group-item">Số lần đăng ký: {pickerWorker.length}</li>
+            <li className="list-group-item">Số lần thành công: {historyOut}</li>
+            <li className="list-group-item">Số lần không đi làm: {miss}</li>
           </ul>
         </>
       ) : (

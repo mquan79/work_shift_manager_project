@@ -17,6 +17,10 @@ function WorkShiftScreen() {
   const closeAdd = () => {
     setAddWSAviable(false);
   }
+
+  const closeView = () => {
+    setIdWS('')
+  }
   const openModal = () => {
     setModalOpen(true);
     addManyWorkShifts();
@@ -103,7 +107,7 @@ function WorkShiftScreen() {
 
   return (
     <div className="container mt-4">
-      {idWS && <WorkShiftInfo idWS={idWS} />}
+      {idWS && <WorkShiftInfo idWS={idWS} onClose={() => closeView('')}/>}
       {addWSAviable && <AddWorkShift add={() => fetchData()} close={() => closeAdd()}/>}
       <CustomModal isCorret={isCorrect} isOpen={isModalOpen} onClose={closeModal} message={message} />
       <ConfirmModal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)} onConfirm={handleConfirmDelete} message="Bạn có chắc chắn muốn xóa ca làm này không?" />
@@ -112,7 +116,7 @@ function WorkShiftScreen() {
       <ul className="list-group mt-3">
         {workshifts.map((workshift) => (
           <li className="list-group-item d-flex justify-content-between" key={workshift._id}>
-            {workshift.work}, Ngày {workshift.date}, Ca {workshift.time}
+            {workshift.work}, Ngày {workshift.date}, Ca {workshift.time}, {workshift.currentNumberWorker}/{workshift.maxNumberWorker}
             <div>
               <button className="btn btn-dark" onClick={() => setIdWS(workshift._id)}>Xem</button>
               <button className="btn btn-danger" onClick={() => deleteHanlde(workshift._id)}>Xóa</button>

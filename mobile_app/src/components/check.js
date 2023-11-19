@@ -16,3 +16,9 @@ export const checkRegister = (register, workers, registers) => {
     }
     
 }
+
+export const checkNumberPhone = (phone) => {
+    var vnf_regex = /((\+84|0)+([3|5|7|8|9])+([0-9]{8})\b)/g;
+    return vnf_regex.test(phone);
+  };
+  

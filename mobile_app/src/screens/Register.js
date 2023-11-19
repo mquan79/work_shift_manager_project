@@ -125,13 +125,15 @@ const Register = ({ navigation }) => {
         const error = check.checkRegister(register, workers, registers)
         if (!register.name || !register.birthday || !register.id_card || !register.phone || !register.address || !selectedWardName || !selectedDistrictName || !selectedProvinceName) {
             Alert.alert('Thông báo', 'Hãy điền đầy đủ thông tin để đăng ký.');
+        } else if(!check.checkNumberPhone(register.phone)){
+            Alert.alert('Thông báo', 'Số điện thoại không hợp lệ');
         } else if (error) {
             Alert.alert('Thông báo', error);
             return;
         } else {
             try {
                 await api.add(register, 'registers');
-                alert('Đăng ký thành công')
+                Alert.alert('Thông báo','Đăng ký thành công')
                 navigation.navigate('Đăng nhập');
             } catch (e) {
                 console.log(e)

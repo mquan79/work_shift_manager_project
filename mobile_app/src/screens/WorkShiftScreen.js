@@ -15,7 +15,10 @@ const WorkShiftScreen = ({ navigation }) => {
                         <Text style={styles.textWorkshift} >{workshift.work}, {workshift.date}, {workshift.time}</Text>
                         <View style={styles.money}>
                             <Icon name="money" style={styles.iconMoney}/>
-                            <Text style={styles.textWorkshift} >{workshift.salary}</Text>
+                            <Text style={styles.textWorkshift} >{parseInt(workshift.salary).toLocaleString('vi-VN', {
+          style: 'currency',
+          currency: 'VND',
+        })}/h</Text>
                         </View>
                         <TouchableOpacity style={styles.buttonWorkshift} onPress={() => navigation.navigate('WorkShiftInfo', { id: workshift._id })}><Text>Đăng ký</Text></TouchableOpacity>
                     </View>
